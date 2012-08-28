@@ -1,0 +1,25 @@
+<dt>You have asked to be notified when the download entitled <em><%= @document.title %></em> is updated.  Following is a summary of the changes that have been posted:</dt>
+
+<dd><%= @summary %></dd>
+
+<form method="get" action="http://<%= ENV['RAILS_ENV'] == 'production' ? 'downloads.asapisoft.com' : 'localhost:3000' %>/<%= @document.filename %>">
+  <input type="hidden" name="download[license_agreement]" value="1"/>
+  <input type="hidden" name="download[email_notification]" value="1"/>
+  <input type="hidden" name="download[quality_assurance]" value="<%= @download.quality_assurance? ? '1' : '0' %>"/>
+  <input type="hidden" name="download[email]" value="<%= @download.email %>"/>
+  <input type="hidden" name="download[first_name]" value="<%= @download.first_name %>"/>
+  <input type="hidden" name="download[last_name]" value="<%= @download.last_name %>"/>
+  <input type="hidden" name="download[document_id]" value="<%= @download.document_id %>"/>
+  <input type="submit" value="Get update" %>
+</form>
+
+<p>Please <a href="mailto:kweller@asapisoft.com">let me know</a> if you have any feedback for me.</p>
+
+<p>Sincerely,</p>
+
+<address>
+Kevin Weller
+<br/>
+ASAP iSoft
+</address>
+<center><img src="http://downloads.asapisoft.com/images/logo.jpg"></center>

@@ -1,0 +1,8 @@
+.bundle
+config/application.rb
+config/initializers/secret_token.rb
+db/*.sqlite3
+documents/*
+log/*.log
+tmp/
+.DS_Store

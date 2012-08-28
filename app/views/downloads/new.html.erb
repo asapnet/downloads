@@ -1,0 +1,41 @@
+<% if @download && @download.document %>
+  <% if @download.errors.any? %>
+    <div id="error-explanation">
+      <h2><%= pluralize(@download.errors.count, "error") %> prohibited this download from being sent:</h2>
+      <ul>
+        <% @download.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <h3 style="font-family: 'Marmelad', sans-serif; font-size: 16px; font-weight: normal;">Please review and accept the below license agreement to download a copy of <em><%= @download.document.title %></em>:</h3>
+  <div class="license-content" style='width: inherit; height: 200px; padding: 100px; border: 1px solid; overflow: scroll;'>
+  	<%= h @download.document.license.content.html_safe %>
+  </div>
+  <br/>
+  <div class="form">
+    <% form_for @download do |f| -%>
+      <%= f.check_box :license_agreement %>
+      <%= f.label :license_agreement, "I have read and accept the above license agreement" %>
+	  <br/>
+	  <%= f.check_box :email_notification %>
+	  <%= f.label :email_notification, "I want to receive email notifications of revisions to this download file" %>
+	  <br/>
+	  <%= f.check_box :quality_assurance %>
+	  <%= f.label :quality_assurance, "I want to provide feedback to help with quality assurance on this download file" %>
+	  <br/>
+      <%= f.label :email, "My email address:" %>
+      <%= f.email_field :email %>
+	  <%= f.label :first_name, "First name:" %>
+	  <%= f.text_field :first_name %>
+	  <%= f.label :last_name, "Last name:" %>
+	  <%= f.text_field :last_name %>
+	  <br/>
+      <%= f.hidden_field :document_id %>
+      <%= f.submit "Download", :disable_with => 'Submitting for download...' %>
+    <% end %>
+  </div>
+<% else %>
+  <h2>You have request a non-existent document.</h2>
+<% end %>
