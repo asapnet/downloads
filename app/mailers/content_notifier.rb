@@ -1,7 +1,7 @@
 class ContentNotifier < ActionMailer::Base
   
-  default :from     => 'downloads@asapisoft.com',
-          :bcc      => 'admin@asapisoft.com'
+  default :from     => 'downloads@asapisystems.com',
+          :bcc      => 'admin@asapisystems.com'
   
   def notify(document_id, summary)
     @document = Document.find(document_id)

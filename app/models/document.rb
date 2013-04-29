@@ -8,7 +8,7 @@ class Document < ActiveRecord::Base
   end
   
   def file_url
-    "http://downloads.asapisoft.com/#{filename}"
+    "http://downloads.asapisystems.com/#{filename}"
   end
   
   def last_modification_time_of_file
